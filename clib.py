@@ -25,9 +25,9 @@ msg=colored("""
   ___ | |(_)| |__  
  / __|| || || '_ \ 
 | (__ | || || |_) |
- \___||_||_||_.__/ v0.1
+ \___||_||_||_.__/ {v}
  
-        ""","blue")
+        """.format(v=colored("v0.1","green")),"red")
 
 
 #define uma variavel contendo as informaçoes de ajuda
@@ -93,18 +93,18 @@ class Connect:
     def volta(self):
         os.system("clear")
         print(msg)
-        Connect(str( input("Insira o nome do livro ou [{h}]elp para ajuda ou [{e}]xit para sair.\n> ". \
-        format(h = colored("h","yellow"), e = colored("e", "red") ) )  \
+        Connect(str( input("Insira o nome do livro ou [{h}] para ajuda ou [{e}] para sair.\n> ". \
+        format(h = colored("/help","yellow"), e = colored("/quit", "red") ) )  \
         ).strip(" ")).down()  
 
     def verifica(self):
-        if self.s == "h":
+        if self.s == "/help":
             os.system("clear")
             print(msg_help)
             input("> Voltar para o menu principal [{enter}]".format(enter=colored("enter","red")))
             self.volta()
 
-        elif self.s == "e":
+        elif self.s == "/quit":
             sys.exit(0)
 
         elif self.s == "--help":
@@ -182,7 +182,7 @@ class Connect:
                 input("> Voltar para o menu principal [{enter}]".format(enter=colored("enter","red")))
                 self.volta()
             
-            self.op = str(input('\n\nInforme o numero do download ou [{ee}]exit para sair [{vv}]oltar\n> '.format(ee=colored('e','red'),vv=colored('v','green'))))
+            self.op = str(input('\n\nInforme o numero do download ou [{ee}] para sair [{vv}]oltar\n> '.format(ee=colored('/quit','red'),vv=colored('v','green'))))
             def reporthook(blocknum, blocksize, totalsize):
                 readsofar = blocknum * blocksize
                 if totalsize > 0:
@@ -195,7 +195,7 @@ class Connect:
                 else:
                     sys.stderr.write("read %d\n" %(readsofar,))
 
-            while self.op != "e" and self.op != "v" and self.op != "h":
+            while self.op != "/quit" and self.op != "v" and self.op != "h":
                 
                 try:
                     self.url = self.lista[ str(self.op)]
@@ -217,9 +217,9 @@ class Connect:
                 print(colored("\nBaixando livro: ", "green") + colored(str(self.name)))
                 urlretrieve(self.d, self.name, reporthook)
                 print("{a} {b}\n\n".format( a=colored("\nArquivo salvo em: ", "green"), b=colored( str( os.getcwd() ) + "/" + self.name, "yellow") ) )
-                self.op = str(input('\n\nInforme o numero do download ou [{ee}]exit para sair [{vv}]oltar\n> '.format(ee=colored('e','red'),vv=colored('v','green'))))
+                self.op = str(input('\n\nInforme o numero do download ou [{ee}] para sair [{vv}]voltar\n> '.format(ee=colored('/quit','red'),vv=colored('v','green'))))
 
-            if self.op == "e":
+            if self.op == "/quit":
                 sys.exit(0)
             elif self.op == "v":
                 os.system("clear")
@@ -231,8 +231,8 @@ class Connect:
 
 if len(sys.argv) < 2:
     teste = None
-    op=str( input("Insira o nome do livro ou [{h}]elp para ajuda ou [{e}]xit para sair.\n> ". \
-            format(h = colored("h","yellow"), e = colored("e", "red") ) )  \
+    op=str( input("Insira o nome do livro ou [{h}] para ajuda ou [{e}] para sair.\n> ". \
+            format(h = colored("/help","yellow"), e = colored("/quit", "red") ) )  \
             ).strip(" ")
 
     
