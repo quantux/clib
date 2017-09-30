@@ -59,6 +59,16 @@ $ clib
 
 ```
 
+### Outras opções
+
+```
+$ clib --help
+```
+
+```
+$ clib --version
+```
+
 ### Algumas imagens que descrevem o funcionamento do software:
 
 <img src="img/1-tela-inicio.png" width="1000" heigth="1000"></img><br>
