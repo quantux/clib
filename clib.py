@@ -3,13 +3,6 @@
 
 # feitor por: mrxrobot
 
-# importando alguns modulos do python que serão utilizados no programa
-# o modulo urlopen sera utilizado para fazer as requisições web
-# os modulos 'sys', 'os' serão usados para executar comandos no sistema
-# o 'sys' ira fornecer os argumentos que serao passados pelo usuario
-# o 'os' vai interagir diretamente com o sistema atravez de comandos especificos
-#  modulo colored, server exclusivamente para colorir os caracters em tela
-
 from urllib.request import urlopen
 from urllib.request import Request
 from urllib.request import urlretrieve
@@ -215,9 +208,6 @@ class Connect:
                 self.volta()
             else:
                 print("Opção invalida!")
-
-# testar se o usuario informou o nome do livo diretamente pelo terminal
-# ex: ./mps-pdf "o hobbit"
 
 
 
