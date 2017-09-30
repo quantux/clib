@@ -13,12 +13,14 @@
 from urllib.request import urlopen
 from urllib.request import Request
 from urllib.request import urlretrieve
-import time
-import progressbar
 from bs4 import BeautifulSoup
+from termcolor import colored
+from unicodedata import normalize
+import progressbar
 import sys
 import os
-from termcolor import colored
+import time
+
 
 # Limpar a tela
 os.system("clear")
@@ -77,6 +79,13 @@ Para baixar o livro desejado, basta informar o número do link seguido de [enter
 # Primeiro irei criar uma classe que terá os métodos e argumetos para 
 # realizar o conexão entre o computador e o servidor onde estão os arquivos.
 
+
+
+def remover_acentos(txt):
+    return normalize('NFKD', txt).encode('ASCII','ignore').decode('ASCII')
+
+
+
 class Connect:
     print(msg)
     def __init__(self, s, format_arq="pdf"):
@@ -84,7 +93,7 @@ class Connect:
         # o primeiro 's', recebera o nome do livro
         # o segundo  'format_arq' define o formato do livro a ser baixado
     
-        self.s = s
+        self.s = remover_acentos(s)
         self.ext = format_arq
         self.verifica()
     
@@ -198,12 +207,14 @@ class Connect:
 # ex: ./mps-pdf "o hobbit"
 
 
+
 if len(sys.argv) < 2:
     teste = None
     op=str( input("Insira o nome do livro ou [{h}]elp para ajuda ou [{e}]xit para sair.\n> ". \
             format(h = colored("h","yellow"), e = colored("e", "red") ) )  \
             ).strip(" ")
 
+    
     download = Connect(op)
     download.down()
 
