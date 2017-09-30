@@ -62,7 +62,7 @@ $ clib
 ### Algumas imagens que descrevem o funcionamento do software:
 
 <img src="img/1-tela-inicio.png" width="1000" heigth="1000"></img><br>
-<img src="img/2-pesquisando.png " width="1000" heigth="1000"></img><br>
+<img src="img/2-pesquisando.png" width="1000" heigth="1000"></img><br>
 <img src="img/3-buscando.png" width="1000" heigth="1000"></img><br>
 <img src="img/4-num-download.png" width="1000" heigth="1000"></img><br>
 <img src="img/5-download.png" width="1000" heigth="1000"></img><br>
