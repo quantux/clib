@@ -161,7 +161,7 @@ class Connect:
                 print("\n{n}\t\t{livro}".format(n=colored("Numero","red"), livro=colored("Livro\n","red")))
                 for x in self.lista:
                     print("[" + colored(str(x), "green") + "]\t\t" + colored(self.lista[x].split("/"+self.lista[x].split('/')[4].split('-')[0] + "-")[1][:-1], "yellow"))
-            else:
+            else:   
                 print(colored("Livro não encontrado!".upper(), "red"))
                 input("> Voltar para o menu principal [{enter}]".format(enter=colored("enter","red")))
                 self.volta()
@@ -181,6 +181,14 @@ class Connect:
 
             while self.op != "e" and self.op != "v" and self.op != "h":
                 
+                try:
+                    self.url = self.lista[ str(self.op)]
+                except:
+                    print("Opção inválida")
+                    time.sleep(3)
+                    os.system("clear")
+                    self.down()
+
                 self.req = Request(
                 self.lista[ str(self.op) ],
                 data=None,
