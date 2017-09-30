@@ -98,14 +98,32 @@ class Connect:
         ).strip(" ")).down()  
 
     def verifica(self):
-        if self.s in "h":
+        if self.s == "h":
             os.system("clear")
             print(msg_help)
             input("> Voltar para o menu principal [{enter}]".format(enter=colored("enter","red")))
             self.volta()
 
-        elif self.s in "e":
+        elif self.s == "e":
             sys.exit(0)
+
+        elif self.s == "--help":
+            os.system("clear")
+            print(msg_help)
+            sys.exit(0)
+
+        elif self.s == "--version":
+            print("clib v0.1 developed by mrxrobot!\nhttps://notabug.org/mrxrobot_/clib.git\n\n")
+            sys.exit(0)
+
+        elif self.s.startswith("-"):
+            print("Opção inválida")
+            sys.exit(0)
+
+        elif self.s == "":
+            print(colored("Erro, informe pelo menos o nome do livro ou do autor!\n","red"))
+            time.sleep(5)
+            self.volta()
 
         else:
             if teste == None:
@@ -201,9 +219,9 @@ class Connect:
                 print("{a} {b}\n\n".format( a=colored("\nArquivo salvo em: ", "green"), b=colored( str( os.getcwd() ) + "/" + self.name, "yellow") ) )
                 self.op = str(input('\n\nInforme o numero do download ou [{ee}]exit para sair [{vv}]oltar\n> '.format(ee=colored('e','red'),vv=colored('v','green'))))
 
-            if self.op in "e":
+            if self.op == "e":
                 sys.exit(0)
-            elif self.op in "v":
+            elif self.op == "v":
                 os.system("clear")
                 self.volta()
             else:
