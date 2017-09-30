@@ -145,10 +145,15 @@ class Connect:
             self.soup = BeautifulSoup(self.resp, "html.parser")
             
             for link in self.soup.find_all("a"):
-                    if str( link.get("href") ).split("-")[-1][:3] in self.ext:
-                        self.links.append( link.get("href") )
-            
+                if str(link.get('href')).endswith("/"):
+                    if self.ext in str(link.get('href')).split('/')[-2].split('-'):
+                        self.links.append(link.get('href'))
+                    elif self.ext in str(link.get("href")).split('/')[-1].split('-'):
+                        self.links.append(link.get("href"))
+                    else:
+                        continue
 
+          
             i = 0
             for j in set(self.links):
                 self.lista[ str(i)] = str(j)
