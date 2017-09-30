@@ -61,20 +61,18 @@ $ clib
 
 ### Algumas imagens que descrevem o funcionamento do software:
 
-![Started program](https://a.uguu.se/MKqChAB3lsMZ_1-tela-de-inicio.jpg)
-
-![Started program](https://a.uguu.se/g58haOjblrWI_2-inserindo-o-nome-do-livro.jpg)
-
-![Started program](https://a.uguu.se/ZFXdqwBCag1U_3-livro-encontrado.jpg)
-
-![Started program](https://a.uguu.se/TuHXZlVEhcdT_4-escolhendo-o-livro.jpg)
-
-![Started program](https://a.uguu.se/Xyru6ZkRPexF_5-baixando-o-livro.jpg)
-
-![Started program](https://a.uguu.se/Nlh4zRKibcQ2_6-download-concluido.jpg)
+<img src="img/1-tela-inicio.png" width="1000" heigth="1000"></img><br>
+<img src="img/2-pesquisando.png " width="1000" heigth="1000"></img><br>
+<img src="img/3-buscando.png" width="1000" heigth="1000"></img><br>
+<img src="img/4-num-download.png" width="1000" heigth="1000"></img><br>
+<img src="img/5-download.png" width="1000" heigth="1000"></img><br>
+<img src="img/6-download-complete.png" width="1000" heigth="1000"></img><br>
 
 
-### Como contribuir 
+
+
+
+### Como contribuir?
 
 Você pode contribuir de várias maneiras: reportando bugs, aprimorando o código-fonte, fazendo sugestões, etc. 
 Forkeie o projeto e mande o seu pull request! 
