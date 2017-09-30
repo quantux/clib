@@ -39,12 +39,10 @@ msg_help=colored("""
 |_| |_| \___||_|| .__/ 
                 |_|   
 ""","red") + colored("""
--------------------------------------
- Bem vindo ao menu de ajuda do programa
--------------------------------------
 ------------------------------
  Como pesquisar por um livro?
 ------------------------------ 
+
 Para pesquisar por um livro informe o nome do livro ou nome do autor.
 
 > nome do livro ou autor [enter]
@@ -52,13 +50,14 @@ Para pesquisar por um livro informe o nome do livro ou nome do autor.
 -----------------------------
  Comandos dentro do programa 
 -----------------------------
-[h]elp   --> Ao teclar 'h', o programa mostrará este menu de ajuda.
+/help    --> Exibe este menu de ajuda.
 [v]oltar --> Volta ao menu anterior.
-[e]xit   --> Encerra o programa.
+/quit    --> Encerra o programa.
 
 ---------------------------------
  Como baixar o livro pesquisado? 
 ---------------------------------
+
 Quando o usuário informar o nome do livro ou do autor, o programa 
 vai iniciar a busca por livros correspondentes as informações passadas pelo 
 usuário.
