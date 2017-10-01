@@ -74,12 +74,12 @@ $ clib -v
 ### Algumas imagens que descrevem o funcionamento do software:
 
 <img src="img/1-tela-inicio.png" width="1000" heigth="1000"></img><br>
-<img src="img/2-pesquisando.png" width="1000" heigth="1000"></img><br>
-<img src="img/3-buscando.png" width="1000" heigth="1000"></img><br>
-<img src="img/4-num-download.png" width="1000" heigth="1000"></img><br>
-<img src="img/5-download.png" width="1000" heigth="1000"></img><br>
-<img src="img/6-download-complete.png" width="1000" heigth="1000"></img><br>
-
+<img src="img/2-enter-search.png" width="1000" heigth="1000"></img><br>
+<img src="img/3-procurando.png" width="1000" heigth="1000"></img><br>
+<img src="img/4-lista.png" width="1000" heigth="1000"></img><br>
+<img src="img/5-set-number-lista.png" width="1000" heigth="1000"></img><br>
+<img src="img/6-download-lista.png" width="1000" heigth="1000"></img><br>
+<img src="img/7-download-sucess.png" width="1000" heigth="1000"></img><br>
 
 
 

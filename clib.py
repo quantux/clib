@@ -9,7 +9,7 @@ from urllib.request import urlretrieve
 from bs4 import BeautifulSoup
 from termcolor import colored
 from unicodedata import normalize
-import progressbar
+
 import sys
 import os
 import time
