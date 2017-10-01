@@ -92,15 +92,23 @@ class Connect:
     def volta(self):
         os.system("clear")
         print(msg)
-        Connect(str( input("Insira o nome do livro ou [{h}] para ajuda ou [{e}] para sair.\n> ". \
+        try:
+            Connect(str( input("Insira o nome do livro ou [{h}] para ajuda ou [{e}] para sair.\n> ". \
         format(h = colored("/help","yellow"), e = colored("/quit", "red") ) )  \
         ).strip(" ")).down()  
+        except KeyboardInterrupt:
+            print("\nBye")
+            sys.exit(0)
 
     def verifica(self):
         if self.s == "/help":
             os.system("clear")
             print(msg_help)
-            input("> Voltar para o menu principal [{enter}]".format(enter=colored("enter","red")))
+            try:
+                input("> Voltar para o menu principal [{enter}]".format(enter=colored("enter","red")))
+            except KeyboardInterrupt:
+                print("\nBye")
+                sys.exit(0)
             self.volta()
 
         elif self.s == "/quit":
@@ -178,10 +186,17 @@ class Connect:
                     print("[" + colored(str(x), "green") + "]\t\t" + colored(self.lista[x].split("/"+self.lista[x].split('/')[4].split('-')[0] + "-")[1][:-1], "yellow"))
             else:   
                 print(colored("Livro não encontrado!".upper(), "red"))
-                input("> Voltar para o menu principal [{enter}]".format(enter=colored("enter","red")))
+                try:
+                    input("> Voltar para o menu principal [{enter}]".format(enter=colored("enter","red")))
+                except KeyboardInterrupt:
+                    print("\nBye")
+                    sys.exit(0)
                 self.volta()
-            
-            self.op = str(input('\n\nInforme o numero do download ou [{ee}] para sair [{vv}]oltar\n> '.format(ee=colored('/quit','red'),vv=colored('v','green'))))
+            try:
+                self.op = str(input('\n\nInforme o numero do download ou [{ee}] para sair [{vv}]oltar\n> '.format(ee=colored('/quit','red'),vv=colored('v','green'))))
+            except KeyboardInterrupt:
+                print("\nBye")
+                sys.exit(0)
             def reporthook(blocknum, blocksize, totalsize):
                 readsofar = blocknum * blocksize
                 if totalsize > 0:
@@ -193,47 +208,55 @@ class Connect:
                         sys.stderr.write("\n")
                 else:
                     sys.stderr.write("read %d\n" %(readsofar,))
-
-            while self.op != "/quit" and self.op != "v" and self.op != "h":
+            try:
+                while self.op != "/quit" and self.op != "v" and self.op != "h":
                 
-                try:
-                    self.url = self.lista[ str(self.op)]
-                except:
-                    print("Opção inválida")
-                    time.sleep(3)
-                    os.system("clear")
-                    self.down()
+                    try:
+                        self.url = self.lista[ str(self.op)]
+                    except:
+                        print("Opção inválida")
+                        time.sleep(3)
+                        os.system("clear")
+                        self.down()
 
-                self.req = Request(
-                self.lista[ str(self.op) ],
-                data=None,
-                headers={'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'})
+                    self.req = Request(
+                    self.lista[ str(self.op) ],
+                    data=None,
+                    headers={'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'})
             
-                self.resp = urlopen( self.req).read()
-                self.soup = BeautifulSoup( self.resp, "html.parser" )
-                self.d = "http://" + self.soup.find_all("script")[0].get_text().split("//")[2].split("&")[0]
-                self.name = self.d.split("/")[-1].replace("%20","_").split("?")[0] + "." + self.ext
-                print(colored("\nBaixando livro: ", "green") + colored(str(self.name)))
-                urlretrieve(self.d, self.name, reporthook)
-                print("{a} {b}\n\n".format( a=colored("\nArquivo salvo em: ", "green"), b=colored( str( os.getcwd() ) + "/" + self.name, "yellow") ) )
-                self.op = str(input('\n\nInforme o numero do download ou [{ee}] para sair [{vv}]voltar\n> '.format(ee=colored('/quit','red'),vv=colored('v','green'))))
-
-            if self.op == "/quit":
+                    self.resp = urlopen( self.req).read()
+                    self.soup = BeautifulSoup( self.resp, "html.parser" )
+                    self.d = "http://" + self.soup.find_all("script")[0].get_text().split("//")[2].split("&")[0]
+                    self.name = self.d.split("/")[-1].replace("%20","_").split("?")[0] + "." + self.ext
+                    print(colored("\nBaixando livro: ", "green") + colored(str(self.name)))
+                    urlretrieve(self.d, self.name, reporthook)
+                    print("{a} {b}\n\n".format( a=colored("\nArquivo salvo em: ", "green"), b=colored( str( os.getcwd() ) + "/" + self.name, "yellow") ) )
+                    try:
+                        self.op = str(input('\n\nInforme o numero do download ou [{ee}] para sair [{vv}]voltar\n> '.format(ee=colored('/quit','red'),vv=colored('v','green'))))
+                    except KeyboardInterrupt:
+                        print("\nBye")
+                        sys.exit(0)
+                if self.op == "/quit":
+                    sys.exit(0)
+                elif self.op == "v":
+                    os.system("clear")
+                    self.volta()
+                else:
+                    print("Opção invalida!")
+            except KeyboardInterrupt:
+                print("\nBye")
                 sys.exit(0)
-            elif self.op == "v":
-                os.system("clear")
-                self.volta()
-            else:
-                print("Opção invalida!")
-
 
 
 if len(sys.argv) < 2:
     teste = None
-    op=str( input("Insira o nome do livro ou [{h}] para ajuda ou [{e}] para sair.\n> ". \
+    try:
+        op=str( input("Insira o nome do livro ou [{h}] para ajuda ou [{e}] para sair.\n> ". \
             format(h = colored("/help","yellow"), e = colored("/quit", "red") ) )  \
             ).strip(" ")
-
+    except KeyboardInterrupt:
+        print("\nBye")
+        sys.exit(0)
     
     download = Connect(op)
     download.down()
