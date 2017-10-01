@@ -97,7 +97,6 @@ class Connect:
         format(h = colored("/help","yellow"), e = colored("/quit", "red") ) )  \
         ).strip(" ")).down()  
         except KeyboardInterrupt:
-            print("\nBye")
             sys.exit(0)
 
     def verifica(self):
@@ -107,7 +106,6 @@ class Connect:
             try:
                 input("> Voltar para o menu principal [{enter}]".format(enter=colored("enter","red")))
             except KeyboardInterrupt:
-                print("\nBye")
                 sys.exit(0)
             self.volta()
 
@@ -189,13 +187,11 @@ class Connect:
                 try:
                     input("> Voltar para o menu principal [{enter}]".format(enter=colored("enter","red")))
                 except KeyboardInterrupt:
-                    print("\nBye")
                     sys.exit(0)
                 self.volta()
             try:
                 self.op = str(input('\n\nInforme o numero do download ou [{ee}] para sair [{vv}]oltar\n> '.format(ee=colored('/quit','red'),vv=colored('v','green'))))
             except KeyboardInterrupt:
-                print("\nBye")
                 sys.exit(0)
             def reporthook(blocknum, blocksize, totalsize):
                 readsofar = blocknum * blocksize
@@ -234,7 +230,6 @@ class Connect:
                     try:
                         self.op = str(input('\n\nInforme o numero do download ou [{ee}] para sair [{vv}]voltar\n> '.format(ee=colored('/quit','red'),vv=colored('v','green'))))
                     except KeyboardInterrupt:
-                        print("\nBye")
                         sys.exit(0)
                 if self.op == "/quit":
                     sys.exit(0)
@@ -255,7 +250,6 @@ if len(sys.argv) < 2:
             format(h = colored("/help","yellow"), e = colored("/quit", "red") ) )  \
             ).strip(" ")
     except KeyboardInterrupt:
-        print("\nBye")
         sys.exit(0)
     
     download = Connect(op)
