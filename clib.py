@@ -106,12 +106,12 @@ class Connect:
         elif self.s == "/quit":
             sys.exit(0)
 
-        elif self.s == "--help":
+        elif self.s == "-h":
             os.system("clear")
             print(msg_help)
             sys.exit(0)
 
-        elif self.s == "--version":
+        elif self.s == "-v":
             print("clib v0.1 developed by mrxrobot!\nhttps://notabug.org/mrxrobot_/clib.git\n\n")
             sys.exit(0)
 

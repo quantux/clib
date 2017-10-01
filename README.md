@@ -61,12 +61,14 @@ $ clib
 
 ### Outras opções
 
+Exibir o menu de ajuda
 ```
-$ clib --help
+$ clib -h
 ```
 
+Exibir informações sobre a versão do software
 ```
-$ clib --version
+$ clib -v
 ```
 
 ### Algumas imagens que descrevem o funcionamento do software:
