@@ -239,7 +239,6 @@ class Connect:
                 else:
                     print("Opção invalida!")
             except KeyboardInterrupt:
-                print("\nBye")
                 sys.exit(0)
 
 
