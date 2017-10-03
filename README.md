@@ -85,7 +85,7 @@ Se o usuário estiver em /home/ e rodar o programa, os livros serão salvos em /
 # Anonimato ao utilizar o software
 O clib pode ser usado juntamente com o tor, assim, garantido uma maior transparência ao realizar a busca e o download dos livros.
 
-Modo de utilizar o tor com o clib
+## Modo de utilizar o tor com o clib
 Uma vez que o serviço do tor esteja rodando na sua máquina, basta usar o **torify**, desse modo, toda a comunicação que for estabelicidaentre o clib e a internet passará pelo tor.
 
 ```
