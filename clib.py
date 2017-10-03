@@ -53,7 +53,7 @@ Para pesquisar por um livro informe o nome do livro ou nome do autor.
 /help    --> Exibe este menu de ajuda.
 
 /setd [/home/usuario/Downloads] --> configura um diretório 
-padrão para armazenar os livros baixados   
+padrão para armazenar os livros baixados.   
 
 [v]oltar --> Volta ao menu anterior.
 /quit    --> Encerra o programa.
