@@ -87,7 +87,6 @@ Configura o diretório onde serão armazenados os livros no formato pdf.
 
 
 
-
 ### Como contribuir?
 
 Você pode contribuir de várias maneiras: reportando bugs, aprimorando o código-fonte, fazendo sugestões, etc. 

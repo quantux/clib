@@ -2,6 +2,7 @@
 # -*- encoding: utf-8 -*-
 
 # feitor por: mrxrobot
+# v0.2
 
 from urllib.request import urlopen
 from urllib.request import Request
