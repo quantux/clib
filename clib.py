@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 from termcolor import colored
 from unicodedata import normalize
 
+#modulos para executar comandos no sistema
 import sys
 import os
 import time
