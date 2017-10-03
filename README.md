@@ -70,9 +70,16 @@ Exibir informações sobre a versão do software
 $ clib -v
 ```
 
+**/setd**
+
 Configura o diretório onde serão armazenados os livros no formato pdf.
+Se o diretório informado não existir, o programa vai salvar o livro no diretorio em
+que estiver sendo executado.
+ex:
+Se o usuário estiver em /home/ e rodar o programa, os livros serão salvos em /home/
+
 ```
-/setd
+/setd /home/diretorio_download/livros
 ```
 
 ### Algumas imagens que descrevem o funcionamento do software:
