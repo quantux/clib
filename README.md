@@ -1,4 +1,4 @@
-# clib *v0.2* Command line book
+# clib *V0.2* Command line book
 
 ### Informação
 
