@@ -16,7 +16,6 @@ import sys
 import os
 import time
 
-
 # Limpar a tela
 os.system("clear")
 
@@ -30,7 +29,6 @@ msg=colored("""
  \___||_||_||_.__/ {v}
  
         """.format(v=colored("v0.2","green")),"red")
-
 
 #define uma variavel contendo as informaçoes de ajuda
 msg_help=colored("""
