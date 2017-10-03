@@ -2,6 +2,7 @@
 # -*- encoding: utf-8 -*-
 
 # feitor por: mrxrobot
+# v0.2
 
 from urllib.request import urlopen
 from urllib.request import Request
@@ -27,7 +28,7 @@ msg=colored("""
 | (__ | || || |_) |
  \___||_||_||_.__/ {v}
  
-        """.format(v=colored("v0.1","green")),"red")
+        """.format(v=colored("v0.2","green")),"red")
 
 
 #define uma variavel contendo as informaçoes de ajuda
@@ -51,6 +52,10 @@ Para pesquisar por um livro informe o nome do livro ou nome do autor.
  Comandos dentro do programa 
 -----------------------------
 /help    --> Exibe este menu de ajuda.
+
+/setd [/home/usuario/Downloads] --> configura um diretório 
+padrão para armazenar os livros baixados.   
+
 [v]oltar --> Volta ao menu anterior.
 /quit    --> Encerra o programa.
 
@@ -88,7 +93,32 @@ class Connect:
         self.s = remover_acentos(s)
         self.ext = format_arq
         self.verifica()
+
+        if os.path.exists("config"):
+            with open("config", "r") as f:
+                self.dd = f.readline().strip('\r\n')
+                if not self.dd.endswith("/"): self.dd += "/"
+                if os.path.exists(self.dd):
+                    self.dd = self.dd
+                else:
+                    self.dd = os.getcwd() + "/"
+                    self.writeconfig()
+        else:
+            self.dd = os.getcwd() + "/"
+            self.writeconfig()
     
+    def writeconfig(self):
+        with open("config", "w") as f:
+            if self.dd[-1] != "/": self.dd += "/"
+            if os.path.exists(self.dd):
+                f.write(self.dd)
+            else:
+                self.dd = os.getcwd() + "/"
+                f.write(self.dd)
+            print(colored("Novo diretorio de download configurado! %s" %self.dd, "red"))
+            time.sleep(4)
+            self.volta()
+
     def volta(self):
         os.system("clear")
         print(msg)
@@ -124,6 +154,15 @@ class Connect:
         elif self.s.startswith("-"):
             print("Opção inválida")
             sys.exit(0)
+        
+        elif self.s.split(" ")[0] == "/setd":
+            self.dd = self.s.split(" ")[1]
+            self.writeconfig()
+            self.volta()
+        elif self.s.startswith("/"):
+            print(colored("Opção inválida!", "red"))
+            time.sleep(4)
+            self.volta()
 
         elif self.s == "":
             print(colored("Erro, informe pelo menos o nome do livro ou do autor!\n","red"))
@@ -225,8 +264,8 @@ class Connect:
                     self.d = "http://" + self.soup.find_all("script")[0].get_text().split("//")[2].split("&")[0]
                     self.name = self.d.split("/")[-1].replace("%20","_").split("?")[0] + "." + self.ext
                     print(colored("\nBaixando livro: ", "green") + colored(str(self.name)))
-                    urlretrieve(self.d, self.name, reporthook)
-                    print("{a} {b}\n\n".format( a=colored("\nArquivo salvo em: ", "green"), b=colored( str( os.getcwd() ) + "/" + self.name, "yellow") ) )
+                    urlretrieve(self.d, self.dd + self.name, reporthook)
+                    print("{a} {b}\n\n".format( a=colored("\nArquivo salvo em: ", "green"), b=colored(self.dd + self.name, "yellow") ) )
                     try:
                         self.op = str(input('\n\nInforme o numero do download ou [{ee}] para sair [{vv}]voltar\n> '.format(ee=colored('/quit','red'),vv=colored('v','green'))))
                     except KeyboardInterrupt:
