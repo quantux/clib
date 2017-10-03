@@ -70,6 +70,11 @@ Exibir informações sobre a versão do software
 $ clib -v
 ```
 
+Configura o diretório onde serão armazenados os livros no formato pdf.
+```
+/setd
+```
+
 ### Algumas imagens que descrevem o funcionamento do software:
 
 <img src="img/1-tela-inicio.png" width="1000" heigth="1000"></img><br>
