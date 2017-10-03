@@ -1,4 +1,4 @@
-# clib *v0.22 Command line book
+# clib *V0.2* Command line book
 
 ### Informação
 
@@ -70,6 +70,11 @@ Exibir informações sobre a versão do software
 $ clib -v
 ```
 
+Configura o diretório onde serão armazenados os livros no formato pdf.
+```
+/setd
+```
+
 ### Algumas imagens que descrevem o funcionamento do software:
 
 <img src="img/1-tela-inicio.png" width="1000" heigth="1000"></img><br>
@@ -79,7 +84,6 @@ $ clib -v
 <img src="img/5-set-number-lista.png" width="1000" heigth="1000"></img><br>
 <img src="img/6-download-lista.png" width="1000" heigth="1000"></img><br>
 <img src="img/7-download-sucess.png" width="1000" heigth="1000"></img><br>
-
 
 
 
