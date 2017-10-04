@@ -94,7 +94,7 @@ $ torify ./clib
 
 # Outras informações
 Além de poder utilizar o tor como um **proxy**, o script foi programado para usar um **user-agent** aleatório para cada (pesquisa/download).
-O objetivo de aplicar esta técnica é garantir a prividade do usuário, uma vez que, não será possivel identicar informações do mesmo.
+O objetivo de aplicar esta técnica é garantir a privacidade do usuário, uma vez que, não será possivel identicar informações do mesmo.
 
 ### Algumas imagens que descrevem o funcionamento do software:
 
