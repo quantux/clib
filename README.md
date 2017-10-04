@@ -9,7 +9,7 @@ O único objetivo aqui é contribuir com software livre para a comunidade.
 
 O **clib** é uma ferramenta CLI para a obtenção de livros em formato pdf, utilizando como fonte o site lelivros.com.
 Utilizando de vários algoritos de análise de código html, o software faz uma busca pelo livro informado pelo usuário e, se encontrar, faz o download do mesmo.
-É livre e está lançado sob a [Unlicense] (http://unlicense.org).
+É livre e está lançado sob a [CC0] (https://directory.fsf.org/wiki/License:CC0).
 
 ### Como instalar o clib? 
 
