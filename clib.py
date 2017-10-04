@@ -16,6 +16,7 @@ import sys
 import os
 import time
 
+# modulo para escolhar algo aleatorio, no caso, o user-agent
 from random import choice
 
 # Limpar a tela
@@ -52,13 +53,12 @@ Para pesquisar por um livro informe o nome do livro ou nome do autor.
 -----------------------------
  Comandos dentro do programa 
 -----------------------------
-/help    --> Exibe este menu de ajuda.
+/h       --> Exibe este menu de ajuda.
 
-/setd [/home/usuario/Downloads] --> configura um diretório 
-padrão para armazenar os livros baixados.   
+/setd [/home/usuario/Downloads] --> configura um diretório padrão para armazenar os livros baixados.   
 
 [v]oltar --> Volta ao menu anterior.
-/quit    --> Encerra o programa.
+/q       --> Encerra o programa.
 
 ---------------------------------
  Como baixar o livro pesquisado? 
@@ -91,6 +91,12 @@ def remover_acentos(txt):
     return normalize('NFKD', txt).encode('ASCII','ignore').decode('ASCII')
 
 
+#cores das opções do programa (quit, help, v, enter, exit)
+e =colored('/q','red')
+h = colored("/h","yellow")
+vv=colored('v','green')
+h = colored("/h","yellow")
+enter=colored("enter","red")
 
 class Connect:
     print(msg)
@@ -107,8 +113,10 @@ class Connect:
             with open("config", "r") as f:
                 self.dd = f.readline().strip('\r\n')
                 if not self.dd.endswith("/"): self.dd += "/"
+
                 if os.path.exists(self.dd):
                     self.dd = self.dd
+
                 else:
                     self.dd = os.getcwd() + "/"
                     self.writeconfig()
@@ -119,11 +127,13 @@ class Connect:
     def writeconfig(self):
         with open("config", "w") as f:
             if self.dd[-1] != "/": self.dd += "/"
+
             if os.path.exists(self.dd):
                 f.write(self.dd)
             else:
                 self.dd = os.getcwd() + "/"
                 f.write(self.dd)
+
             print(colored("Novo diretorio de download configurado! %s" %self.dd, "red"))
             time.sleep(4)
             self.volta()
@@ -131,47 +141,57 @@ class Connect:
     def volta(self):
         os.system("clear")
         print(msg)
+
         try:
-            Connect(str( input("Insira o nome do livro ou [{h}] para ajuda ou [{e}] para sair.\n> ". \
-        format(h = colored("/help","yellow"), e = colored("/quit", "red") ) )  \
-        ).strip(" ")).down()  
+            Connect(str(input(f"Insira o nome do livro ou [{h}] para ajuda ou [{e}] para sair.\n> ").strip(" "))).down()  
+
         except KeyboardInterrupt:
             sys.exit(0)
 
     def verifica(self):
-        if self.s == "/help":
+        if self.s == "/h":
             os.system("clear")
             print(msg_help)
+
             try:
-                input("> Voltar para o menu principal [{enter}]".format(enter=colored("enter","red")))
+                input(f"> Voltar para o menu principal [{enter}]")
+
             except KeyboardInterrupt:
                 sys.exit(0)
             self.volta()
 
-        elif self.s == "/quit":
+
+        elif self.s == "/q":
             sys.exit(0)
+
 
         elif self.s == "-h":
             os.system("clear")
             print(msg_help)
             sys.exit(0)
 
+
         elif self.s == "-v":
-            print("clib v0.1 developed by mrxrobot!\nhttps://notabug.org/mrxrobot_/clib.git\n\n")
+            print("clib v0.2 developed by mrxrobot!\n\nhttps://notabug.org/mrxrobot_/clib.git\n\n")
             sys.exit(0)
+
 
         elif self.s.startswith("-"):
             print("Opção inválida")
             sys.exit(0)
-        
+
+
         elif self.s.split(" ")[0] == "/setd":
             self.dd = self.s.split(" ")[1]
             self.writeconfig()
             self.volta()
+
+
         elif self.s.startswith("/"):
             print(colored("Opção inválida!", "red"))
             time.sleep(4)
             self.volta()
+
 
         elif self.s == "":
             print(colored("Erro, informe pelo menos o nome do livro ou do autor!\n","red"))
@@ -180,15 +200,9 @@ class Connect:
 
         else:
             if teste == None:
-                if len(self.s.split(" ")) > 1: self.s = "".join( self.s.replace(" ", "+") )
-                else: selfs = self.s
-                if self.s[-1] in "+": self.s = self.s[:-1]
-            
+                self.s = self.s.strip(" ").replace(' ', '+')
             elif teste == "arg":
-                if len(self.s.split(" ")) > 1: self.s = "".join( self.s.replace(" ", "+") )
-                else: self.s = self.s
-                if self.s[-1] in "+": self.s = self.s[:-1]
-
+                self.s = self.s.strip(" ").replace(' ', '+')
         return True
 
     def down(self):
@@ -198,7 +212,7 @@ class Connect:
             print("Pesquisando por {s}".format(s=colored("'{s}'".format(s=self.s.replace('+', ' ')),"yellow")))
             self.links = []
             self.lista = {}
-            self.url = "http://lelivros.bid/?x=0&y=0&s={ss}".format(ss=self.s)
+            self.url = f"http://lelivros.bid/?x=0&y=0&s={self.s}"
             
             self.req = Request(
             self.url,
@@ -232,15 +246,22 @@ class Connect:
                     print("[" + colored(str(x), "green") + "]\t\t" + colored(self.lista[x].split("/"+self.lista[x].split('/')[4].split('-')[0] + "-")[1][:-1], "yellow"))
             else:   
                 print(colored("Livro não encontrado!".upper(), "red"))
+
                 try:
-                    input("> Voltar para o menu principal [{enter}]".format(enter=colored("enter","red")))
+                    input(f"> Voltar para o menu principal [{enter}]")
+
                 except KeyboardInterrupt:
                     sys.exit(0)
                 self.volta()
+
+
             try:
-                self.op = str(input('\n\nInforme o numero do download ou [{ee}] para sair [{vv}]oltar\n> '.format(ee=colored('/quit','red'),vv=colored('v','green'))))
+                self.op = str(input(f'\n\nInforme o número do download ou [{e}] para sair [{vv}]oltar\n> '))
+
             except KeyboardInterrupt:
                 sys.exit(0)
+
+
             def reporthook(blocknum, blocksize, totalsize):
                 readsofar = blocknum * blocksize
                 if totalsize > 0:
@@ -248,15 +269,18 @@ class Connect:
                     s = "\rProgresso do download: %5.0f%% %*d" % (
                             percent, len(str(totalsize)), readsofar)
                     sys.stderr.write(s)
+
                     if readsofar >= totalsize:
                         sys.stderr.write("\n")
                 else:
                     sys.stderr.write("read %d\n" %(readsofar,))
+
             try:
-                while self.op != "/quit" and self.op != "v" and self.op != "h":
+                while self.op != "/q" and self.op != "v":
                 
                     try:
                         self.url = self.lista[ str(self.op)]
+
                     except:
                         print("Opção inválida")
                         time.sleep(3)
@@ -264,28 +288,32 @@ class Connect:
                         self.down()
 
                     self.req = Request(
-                    self.lista[ str(self.op) ],
-                    data=None,
-                    headers={'User-Agent':choice(user_agents)})
-            
+                        self.lista[ str(self.op) ],
+                        data=None,
+                        headers={'User-Agent':choice(user_agents)}
+                    )
                     self.resp = urlopen( self.req).read()
                     self.soup = BeautifulSoup( self.resp, "html.parser" )
+
                     self.d = "http://" + self.soup.find_all("script")[0].get_text().split("//")[2].split("&")[0]
                     self.name = self.d.split("/")[-1].replace("%20","_").split("?")[0] + "." + self.ext
+                    
                     print(colored("\nBaixando livro: ", "green") + colored(str(self.name)))
                     urlretrieve(self.d, self.dd + self.name, reporthook)
                     print("{a} {b}\n\n".format( a=colored("\nArquivo salvo em: ", "green"), b=colored(self.dd + self.name, "yellow") ) )
                     try:
-                        self.op = str(input('\n\nInforme o numero do download ou [{ee}] para sair [{vv}]voltar\n> '.format(ee=colored('/quit','red'),vv=colored('v','green'))))
+                        self.op = str(input(f'\n\nInforme o número do download ou [{e}] para sair [{vv}]voltar\n> '))
                     except KeyboardInterrupt:
                         sys.exit(0)
-                if self.op == "/quit":
+
+                if self.op == "/q":
                     sys.exit(0)
                 elif self.op == "v":
                     os.system("clear")
                     self.volta()
                 else:
                     print("Opção invalida!")
+
             except KeyboardInterrupt:
                 sys.exit(0)
 
@@ -293,9 +321,8 @@ class Connect:
 if len(sys.argv) < 2:
     teste = None
     try:
-        op=str( input("Insira o nome do livro ou [{h}] para ajuda ou [{e}] para sair.\n> ". \
-            format(h = colored("/help","yellow"), e = colored("/quit", "red") ) )  \
-            ).strip(" ")
+        op=str(input(f"Insira o nome do livro ou [{h}] para ajuda ou [{e}] para sair.\n> ")).strip(" ")
+
     except KeyboardInterrupt:
         sys.exit(0)
     
@@ -305,6 +332,7 @@ if len(sys.argv) < 2:
 else:
     teste = "arg"
     arg = []
+
     for i in range(int(len(sys.argv))):
         arg.append(sys.argv[i])
     
