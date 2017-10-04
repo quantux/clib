@@ -92,6 +92,10 @@ Uma vez que o serviço do tor esteja rodando na sua máquina, basta usar o **tor
 $ torify ./clib
 ```
 
+# Outras informações
+Além de poder utilizar o tor como um **proxy**, o script foi programado para usar um **user-agent** aleatório para cada (pesquisa/download).
+O objetivo de aplicar esta técnica é garantir a prividade do usuário, uma vez que, não será possivel identicar informações do mesmo.
+
 ### Algumas imagens que descrevem o funcionamento do software:
 
 <img src="img/1-tela-inicio.png" width="1000" heigth="1000"></img><br>

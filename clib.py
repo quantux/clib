@@ -16,6 +16,8 @@ import sys
 import os
 import time
 
+from random import choice
+
 # Limpar a tela
 os.system("clear")
 
@@ -75,6 +77,14 @@ Para baixar o livro desejado, basta informar o número do link seguido de [enter
 # Primeiro irei criar uma classe que terá os métodos e argumetos para 
 # realizar o conexão entre o computador e o servidor onde estão os arquivos.
 
+user_agents = [
+        'Mozilla/5.0 (Windows; U; Windows NT 5.1; it; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11',
+        'Opera/9.25 (Windows NT 5.1; U; en)',
+        'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)',
+        'Mozilla/5.0 (compatible; explorer/3.5; Win7) KHTML/3.5.5 (like Gecko) (windows 7)',
+        'Mozilla/5.0 (X11; U; unknow i686; en-US; rv:1.8.0.12) Gecko/20070731 unknow/dapper-security Firefox/1.5.0.12', 
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'
+]
 
 
 def remover_acentos(txt):
@@ -193,7 +203,7 @@ class Connect:
             self.req = Request(
             self.url,
             data=None,
-            headers={'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'})
+            headers={'User-Agent': choice(user_agents)})
             
             self.resp = urlopen(self.req).read()
             self.soup = BeautifulSoup(self.resp, "html.parser")
@@ -256,7 +266,7 @@ class Connect:
                     self.req = Request(
                     self.lista[ str(self.op) ],
                     data=None,
-                    headers={'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.47 Safari/537.36'})
+                    headers={'User-Agent':choice(user_agents)})
             
                     self.resp = urlopen( self.req).read()
                     self.soup = BeautifulSoup( self.resp, "html.parser" )
