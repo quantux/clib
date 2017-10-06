@@ -222,16 +222,7 @@ class Connect:
             self.resp = urlopen(self.req).read()
             self.soup = BeautifulSoup(self.resp, "html.parser")
             
-            for link in self.soup.find_all("a"):
-                if str(link.get('href')).endswith("/"):
-                    if self.ext in str(link.get('href')).split('/')[-2].split('-'):
-                        self.links.append(link.get('href'))
-                    elif self.ext in str(link.get("href")).split('/')[-1].split('-'):
-                        self.links.append(link.get("href"))
-                    else:
-                        continue
-
-          
+            self.links = [x.get('href') for x in self.soup.find_all('a', {'class':' button product_type_simple'})]          
             i = 0
             for j in set(self.links):
                 self.lista[ str(i)] = str(j)
@@ -294,12 +285,16 @@ class Connect:
                     )
                     self.resp = urlopen( self.req).read()
                     self.soup = BeautifulSoup( self.resp, "html.parser" )
+                    self.d = [
+                            x.get('href').split('&')[0] 
+                            for x in self.soup.find_all('div', {'class':'links-download'})[0].find_all('a') 
+                            if x.get('href') not in "javascript:void(0);" 
+                            ]
 
-                    self.d = "http://" + self.soup.find_all("script")[0].get_text().split("//")[2].split("&")[0]
-                    self.name = self.d.split("/")[-1].replace("%20","_").split("?")[0] + "." + self.ext
-                    
+                    self.name = self.d[0].split("/")[-1].replace("%20","_").split("?")[0] + "." + self.ext
+
                     print(colored("\nBaixando livro: ", "green") + colored(str(self.name)))
-                    urlretrieve(self.d, self.dd + self.name, reporthook)
+                    urlretrieve(self.d[0], self.dd + self.name, reporthook)
                     print("{a} {b}\n\n".format( a=colored("\nArquivo salvo em: ", "green"), b=colored(self.dd + self.name, "yellow") ) )
                     try:
                         self.op = str(input(f'\n\nInforme o número do download ou [{e}] para sair [{vv}]voltar\n> '))
