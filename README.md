@@ -101,7 +101,6 @@ O objetivo de aplicar esta técnica é garantir a privacidade do usuário, uma v
 <img src="img/1-tela-inicio.png" width="1000" heigth="1000"></img><br>
 <img src="img/2-enter-search.png" width="1000" heigth="1000"></img><br>
 <img src="img/3-procurando.png" width="1000" heigth="1000"></img><br>
-<img src="img/4-lista.png" width="1000" heigth="1000"></img><br>
 <img src="img/5-set-number-lista.png" width="1000" heigth="1000"></img><br>
 <img src="img/6-download-lista.png" width="1000" heigth="1000"></img><br>
 <img src="img/7-download-sucess.png" width="1000" heigth="1000"></img><br>
