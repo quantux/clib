@@ -20,15 +20,25 @@ import time
 from random import choice
 
 #define uma variavel contendo a mensagem de inicio programa
-msg=colored("""
-  
-       _  _  _     
-  ___ | |(_)| |__  
- / __|| || || '_ \ 
-| (__ | || || |_) |
- \___||_||_||_.__/ {v}
- 
-        """.format(v=colored("v0.2","green")),"red")
+msg=colored("""                                     
+                                      bbbbbbbb            
+                     lllllll    iiii  b::::::b            
+                     l:::::l   i::::i b::::::b            
+                     l:::::l    iiii  b::::::b            
+                     l:::::l           b:::::b            
+    cccccccccccccccc  l::::l  iiiiiii  b:::::bbbbbbbbb    
+  cc:::::::::::::::c  l::::l  i:::::i  b::::::::::::::bb  
+ c:::::::::::::::::c  l::::l   i::::i  b::::::::::::::::b 
+c:::::::cccccc:::::c  l::::l   i::::i  b:::::bbbbb:::::::b
+c::::::c     ccccccc  l::::l   i::::i  b:::::b    b::::::b
+c:::::c               l::::l   i::::i  b:::::b     b:::::b
+c:::::c               l::::l   i::::i  b:::::b     b:::::b
+c::::::c     ccccccc  l::::l   i::::i  b:::::b     b:::::b
+c:::::::cccccc:::::c l::::::l i::::::i b:::::bbbbbb::::::b
+ c:::::::::::::::::c l::::::l i::::::i b::::::::::::::::b 
+  cc:::::::::::::::c l::::::l i::::::i b:::::::::::::::b  
+    cccccccccccccccc llllllll iiiiiiii bbbbbbbbbbbbbbbb   {v}
+""".format(v=colored("v0.2","green")),"red")
 
 #define uma variavel contendo as informaçoes de ajuda
 msg_help=colored("""
