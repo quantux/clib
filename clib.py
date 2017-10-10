@@ -19,6 +19,8 @@ import time
 # modulo para escolhar algo aleatorio, no caso, o user-agent
 from random import choice
 
+
+
 #define uma variavel contendo a mensagem de inicio programa
 msg=colored("""                                     
                                       bbbbbbbb            
@@ -116,7 +118,7 @@ enter=colored("enter","red")
 
 class Connect:
     print(msg)
-    def __init__(self, s, format_arq="pdf"):
+    def __init__(self, s, format_arq=".pdf"):
         # Comecei inicializado a classe com 2 argumetos
         # o primeiro 's', recebera o nome do livro
         # o segundo  'format_arq' define o formato do livro a ser baixado
@@ -274,24 +276,31 @@ class Connect:
                 sys.exit(0)
 
             i = 0
-            for j in set(self.links):
+            self.nome = []
+            for j in self.links:
                 self.lista[ str(i)] = str(j)
+                self.nome.append(str(self.soup.find_all(
+                    'li', {'class':'post-17105 product type-product status-publish has-post-thumbnail hentry first instock'
+                        })[i].find('a').find('h3').text))
+ 
                 i += 1
-
+            
             os.system("clear")
             print(msg)
             
             def lista_livro_d():
                 cores = ['magenta', 'cyan']
                 l = 0
+                
                 if len(self.lista) > 0:
                     print("\n{n}\t\t{livro}".format(n=colored("Numero","red"), livro=colored("Livro\n","red")))
-                    for x in self.lista:
-                        nome = self.lista[x].split("/"+self.lista[x].split('/')[4].split('-')[0] + "-")[1][:-1]
-                        print("[" + colored(str(x), cores[l]) + "]\t\t" + colored(nome.upper(), cores[l]))
+                    for x in  self.lista:
+                        #nome = self.lista[x].split("/"+self.lista[x].split('/')[4].split('-')[0] + "-")[1][:-1]
+                        print("[" + colored(str(x), cores[l]) + "]\t\t" + colored(self.nome[int(x)].upper(), cores[l]))
                         l += 1
                         if l == len(cores):
                             l = 0
+                        
                     print(" ")
                 else:   
                     print(colored("Livro não encontrado!".upper(), "red"))
@@ -315,7 +324,7 @@ class Connect:
                 readsofar = blocknum * blocksize
                 if totalsize > 0:
                     percent =readsofar * 1e2 / totalsize
-                    s = f"\rBaixando:\t{self.name}\t:\t%5.0f%% %*d" % (
+                    s = "\rBaixando:\t{a}\t:\t%5.0f%% %*d".format(a=self.nome[int(self.op)]) % (
                             percent, len(str(totalsize)), readsofar)
                     sys.stderr.write(s)
 
@@ -342,16 +351,13 @@ class Connect:
                             for x in self.soup.find_all('div', {'class':'links-download'})[0].find_all('a') 
                             if x.get('href') not in "javascript:void(0);" 
                             ]
-
-                    self.name = self.d[0].split("/")[-1].replace("%20","_").split("?")[0] + "." + self.ext
-
                    
                     os.system("clear")
                     print(msg)
                     lista_livro_d()
 
                     try:
-                        urlretrieve(self.d[0], self.dd + self.name, reporthook)
+                        urlretrieve(self.d[0], self.dd + self.nome[int(self.op)] + self.ext, reporthook)
                     except KeyboardInterrupt:
                         sys.exit(0)
                     except:
@@ -359,7 +365,7 @@ class Connect:
                     os.system("clear")
                     print(msg)
                     lista_livro_d()
-                    print("{a} {b}\n\n".format( a=colored("\nArquivo salvo em: ", "green"), b=colored(self.dd + self.name, "red") ) )
+                    print("{a} {b}\n\n".format( a=colored("\nArquivo salvo em: ", "green"), b=colored(self.dd + self.nome[int(self.op)] + self.ext, "red") ) )
                     time.sleep(10)
                     os.system("clear")
                     print(msg)
