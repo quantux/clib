@@ -38,6 +38,8 @@ c:::::::cccccc:::::c l::::::l i::::::i b:::::bbbbbb::::::b
  c:::::::::::::::::c l::::::l i::::::i b::::::::::::::::b 
   cc:::::::::::::::c l::::::l i::::::i b:::::::::::::::b  
     cccccccccccccccc llllllll iiiiiiii bbbbbbbbbbbbbbbb   {v}
+
+
 """.format(v=colored("v0.2","green")),"red")
 
 #define uma variavel contendo as informaçoes de ajuda
@@ -225,7 +227,7 @@ class Connect:
             sys.exit(0)
 
 
-        elif self.s.split(" ")[0] == "/setd":
+        elif self.s.split(" ")[0] == "/setd": 
             self.dd = self.s.split(" ")[1]
             self.writeconfig()
             self.volta()
@@ -280,10 +282,17 @@ class Connect:
             print(msg)
             
             def lista_livro_d():
+                cores = ['magenta', 'cyan']
+                l = 0
                 if len(self.lista) > 0:
                     print("\n{n}\t\t{livro}".format(n=colored("Numero","red"), livro=colored("Livro\n","red")))
                     for x in self.lista:
-                        print("[" + colored(str(x), "green") + "]\t\t" + colored(self.lista[x].split("/"+self.lista[x].split('/')[4].split('-')[0] + "-")[1][:-1], "yellow"))
+                        nome = self.lista[x].split("/"+self.lista[x].split('/')[4].split('-')[0] + "-")[1][:-1]
+                        print("[" + colored(str(x), cores[l]) + "]\t\t" + colored(nome.upper(), cores[l]))
+                        l += 1
+                        if l == len(cores):
+                            l = 0
+                    print(" ")
                 else:   
                     print(colored("Livro não encontrado!".upper(), "red"))
 
@@ -306,7 +315,7 @@ class Connect:
                 readsofar = blocknum * blocksize
                 if totalsize > 0:
                     percent =readsofar * 1e2 / totalsize
-                    s = "\rProgresso do download: %5.0f%% %*d" % (
+                    s = f"\rBaixando:\t{self.name}\t:\t%5.0f%% %*d" % (
                             percent, len(str(totalsize)), readsofar)
                     sys.stderr.write(s)
 
@@ -336,8 +345,11 @@ class Connect:
 
                     self.name = self.d[0].split("/")[-1].replace("%20","_").split("?")[0] + "." + self.ext
 
-                    print(colored("\nBaixando livro: ", "green") + colored(str(self.name)))
-                    
+                   
+                    os.system("clear")
+                    print(msg)
+                    lista_livro_d()
+
                     try:
                         urlretrieve(self.d[0], self.dd + self.name, reporthook)
                     except KeyboardInterrupt:
@@ -347,11 +359,8 @@ class Connect:
                     os.system("clear")
                     print(msg)
                     lista_livro_d()
-                    print("{a} {b}\n\n".format( a=colored("\nArquivo salvo em: ", "green"), b=colored(self.dd + self.name, "yellow") ) )
-                    try:
-                        input(colored("Para continuar, pressione %s" %(colored("[Enter]","red")),"green"))
-                    except KeyboardInterrupt:
-                        sys.exit(0)
+                    print("{a} {b}\n\n".format( a=colored("\nArquivo salvo em: ", "green"), b=colored(self.dd + self.name, "red") ) )
+                    time.sleep(10)
                     os.system("clear")
                     print(msg)
                     lista_livro_d()
@@ -363,7 +372,7 @@ class Connect:
                 if self.op == "/q": sys.exit(0)
                 elif self.op == "v": self.volta()
                 else: 
-                    print("Opção inválida")
+                    print(colored("Opção inválida", "red"))
                     time.sleep(3)
                     os.system("clear")
                     print(msg)
