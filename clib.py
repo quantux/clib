@@ -109,7 +109,7 @@ class Connect:
         # o primeiro 's', recebera o nome do livro
         # o segundo  'format_arq' define o formato do livro a ser baixado
     
-        self.s = remover_acentos(s)
+        self.s = remover_acentos(s).replace("'", '')
         self.ext = format_arq
         self.verifica()
 
@@ -234,9 +234,9 @@ class Connect:
 
         else:
             if teste == None:
-                self.s = self.s.strip(" ").replace(' ', '+')
+                self.s = self.s.strip(" ").replace(' ', '+').replace('"', "")
             elif teste == "arg":
-                self.s = self.s.strip(" ").replace(' ', '+')
+                self.s = self.s.strip(" ").replace(' ', '+').replace('"', "")
         return True
 
     def down(self):
@@ -334,7 +334,9 @@ class Connect:
                         sys.exit(0)
                     except:
                         print("Erro no download!")
-
+                    os.system("clear")
+                    print(msg)
+                    lista_livro_d()
                     print("{a} {b}\n\n".format( a=colored("\nArquivo salvo em: ", "green"), b=colored(self.dd + self.name, "yellow") ) )
                     try:
                         input(colored("Para continuar, pressione %s" %(colored("[Enter]","red")),"green"))
