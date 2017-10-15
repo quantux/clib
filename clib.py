@@ -130,7 +130,7 @@ class Connect:
         if os.path.exists(dconf):
             with open(dconf, "r") as f:
                 self.dd = f.readline().strip('\r\n')
-                if self.dd[-1] != "/": self.dd += "/"
+                if not self.dd.endswith("/"): self.dd += "/"
 
                 if os.access(self.dd, os.F_OK) and os.access(self.dd, os.W_OK):
                     self.dd = self.dd
@@ -160,7 +160,7 @@ class Connect:
     
     def writeconfig(self):
         with open(dconf, "w") as f:
-            if self.dd[-1] != "/": self.dd += "/"
+            if not self.dd.endswith("/"): self.dd += "/"
             if os.access(self.dd, os.F_OK) and os.access(self.dd, os.W_OK):
                 print(colored("Novo diretório configurado com sucesso!","red"))
                 time.sleep(4)
